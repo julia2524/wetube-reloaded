@@ -1,0 +1,9 @@
+extends notice-detail.pug 
+
+block content 
+    h2 전체 공지사항 목록입니다.
+    ul
+        each notice in notices 
+            li=notice
+        else 
+            li Nothing notice
