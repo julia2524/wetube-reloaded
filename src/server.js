@@ -1,10 +1,12 @@
 import express from "express";
 import morgan from "morgan";
 import session from "express-session";
+import flash from "express-flash";
 import MongoStore from "connect-mongo";
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
+import apiRouter from "./routers/apiRouter";
 import noticeRouter from "./routers/noticeRouter";
 import { localsMiddleware } from "./middlewares";
 
@@ -15,6 +17,7 @@ app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use(
   session({
@@ -33,6 +36,7 @@ app.use((req, res, next) => {
   });
 });
 
+app.use(flash());
 app.use(localsMiddleware);
 
 app.use("/uploads", express.static("uploads"));
@@ -41,6 +45,7 @@ app.use("/assets", express.static("assets"));
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
+app.use("/api", apiRouter);
 app.use("/notices", noticeRouter);
 
 export default app;
