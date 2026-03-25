@@ -37,7 +37,7 @@ export const postJoin = async (req, res) => {
 };
 
 export const getLogin = (req, res) => {
-  res.render("Login", { pageTitle: "Login" });
+  res.render("login", { pageTitle: "Login" });
 };
 export const postLogin = async (req, res) => {
   const { username, password } = req.body;
@@ -158,7 +158,7 @@ export const postEdit = async (req, res) => {
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
-      avatarUrl: file ? file.path : avatarUrl,
+      avatarUrl: file ? file.location : avatarUrl,
       name,
       email,
       username,

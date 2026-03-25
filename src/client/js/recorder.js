@@ -75,6 +75,8 @@ const handleDownload = async () => {
 
   actionBtn.disabled = false;
   actionBtn.innerText = "Record Again";
+
+  init();
   actionBtn.addEventListener("click", handleStart);
 };
 
@@ -90,6 +92,11 @@ const handleStop = () => {
 const handleStart = () => {
   actionBtn.innerText = "Stop Recording";
   actionBtn.removeEventListener("click", handleStart);
+  actionBtn.disabled = true;
+  setTimeout(() => {
+    actionBtn.disabled = false;
+    actionBtn.addEventListener("click", handleStop);
+  }, 1000);
   actionBtn.addEventListener("click", handleStop);
   timerId = setInterval(changeTime, 1000);
 

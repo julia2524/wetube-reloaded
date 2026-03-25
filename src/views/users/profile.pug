@@ -6,10 +6,7 @@ block content
         if(!loggedInUser.avatarUrl)
             img(src="/defaultImg/defaultImg.jpg").avatar
         else
-            if(loggedInUser.avatarUrl.includes("githubusercontent"))
-                img(src=loggedInUser.avatarUrl).avatar
-            else
-                img(src="/" +loggedInUser.avatarUrl).avatar
+            img(src=loggedInUser.avatarUrl).avatar
         h3=user.name
     div.video-grid
         each video in user.videos 
